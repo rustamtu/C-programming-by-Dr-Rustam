@@ -1,0 +1,103 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+// Predefined lists of first names and last names
+const char *firstNames[] = {
+    "John", "Emma", "Michael", "Sophia", "William", "Olivia", "James", "Ava", "Robert", "Mia"};
+
+const char *lastNames[] = {
+    "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor"};
+
+// Function to generate a fake name
+char *generateFakeName()
+{
+    // Seed the random number generator
+    srand(time(NULL));
+
+    // Generate a random index for the first name and last name arrays
+    int firstNameIndex = rand() % (sizeof(firstNames) / sizeof(firstNames[0]));
+    int lastNameIndex = rand() % (sizeof(lastNames) / sizeof(lastNames[0]));
+
+    // Allocate memory for the fake name
+    char *fakeName = (char *)malloc(100 * sizeof(char));
+
+    // Generate the fake name by combining the randomly selected first name and last name
+    sprintf(fakeName, "%s %s", firstNames[firstNameIndex], lastNames[lastNameIndex]);
+
+    // Return the generated fake name
+    return fakeName;
+}
+
+// Structure definition for Date
+struct Date
+{
+    int day;
+    int month;
+    int year;
+};
+
+// Structure definition for Student
+struct Student
+{
+    int rollNumber;
+    char name[50];
+    struct Date dob;
+};
+
+void showStudent(struct Student *s)
+{
+    // rollNumber   name    dob(d-m-y)
+    printf("|%d\t|%s\t|%d-%d-%d\n", s->rollNumber, s->name, s->dob.day, s->dob.month, s->dob.year);
+}
+
+int main()
+{
+    // Create an instance of the Student structure
+    struct Student student[10];
+    int n, i;
+    printf("Enter n\n");
+    scanf("%d", &n);
+    printf("Enter %d student details:\n", n);
+    for (i = 0; i < n; i++)
+    {
+        student[i].rollNumber = i + 1;
+        strcpy(student[i].name, generateFakeName());
+        printf("Enter date of birth (dd-mm-yyyy) for Roll No. %d, Name: %s\n", student[i].rollNumber, student[i].name);
+        scanf("%d", &student[i].dob.day);
+        scanf("%d", &student[i].dob.month);
+        scanf("%d", &student[i].dob.year);
+    }
+
+    printf("Student details in tabular form\n");
+    printf("---------------------------------------------------\n");
+    printf("|RollNo\t|Name\t\t|Date of Birth (DOB)\n");
+    printf("---------------------------------------------------\n");
+    for (i = 0; i < n; i++)
+    {
+        showStudent(&student[i]);
+    }
+    printf("---------------------------------------------------\n");
+    return 0;
+}
+
+
+20565 29656 17130 6998 10716 15583 
+this is a text file
+this is a text file
+this is a text file
+this is a text file
+this is a last line
+20565 29656 17130 6998 10716 15583 
+this is a text file
+this is a text file
+this is a text file
+this is a text file
+this is a last line
+20565 29656 17130 6998 10716 15583 
+this is a text file
+this is a text file
+this is a text file
+this is a text file
+this is a last line
